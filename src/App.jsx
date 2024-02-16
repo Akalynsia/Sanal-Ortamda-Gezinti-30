@@ -14,15 +14,15 @@ export default function App() {
     generateMessage(userData);
   }
 
-  const handleEnter = () => {
+  const handleEnter = (event) => {
     if (!userData.hasEntered) {
-      setUserData({
-        ...userData,
+      const { offsetX, offsetY } = event.nativeEvent;
+      setUserData((prevUserData) => ({
+        ...prevUserData,
         hasEntered: true,
         entranceTime: new Date(),
-        clickCoordinates: { offsetX: 0, offsetY: 0 },
-      });
-      generateMessage(userData);
+        clickCoordinates: { offsetX, offsetY },
+      }));
     }
   };
 
